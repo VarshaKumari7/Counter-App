@@ -1,8 +1,14 @@
-import React from "react";
-import Addcounter from "../Addcounter";
+import React, { useState } from "react";
+import "../Startcounter/timer.css";
+import Addcounterbox from "../Addcounterbox";
 import StartCounter from "../Startcounter";
 
 export default function HomeScreen() {
+  const [count, setCount] = useState(0);
+  const handleAddCounterClick = () => {
+    setCount(count + 1);
+  };
+
   return (
     <div
       className="container"
@@ -12,9 +18,11 @@ export default function HomeScreen() {
         fontFamily: "sans-serif",
       }}
     >
-      <Addcounter />
+      <Addcounterbox onAddCounterClick={handleAddCounterClick} />
       <div className="counter-box">
-        <StartCounter />
+        {Array.from({ length: count }).map((ele, index) => (
+          <StartCounter key={index} />
+        ))}
       </div>
     </div>
   );

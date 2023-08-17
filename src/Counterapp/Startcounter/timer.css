@@ -2,19 +2,25 @@
     box-sizing: border-box;
 }
 .start-div{
-    display: flex;
     flex-direction: column;
     height: 150px;
     width: 150px;
 }
 
-.start{
+.counter-box{
+    justify-content: space-evenly;
+    margin: 3%;
+}
+
+.counter-box,.start,.start-div{
     display: flex;
+}
+.start{
     flex: 0.3;
     cursor: pointer;
     padding: 0.5rem ;
     background-color: #f8f9fa !important;
-    color: black;
+    color: black !important;
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
 }
 
