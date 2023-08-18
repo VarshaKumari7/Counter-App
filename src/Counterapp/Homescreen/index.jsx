@@ -4,9 +4,26 @@ import Addcounterbox from "../Addcounterbox";
 import StartCounter from "../Startcounter";
 
 export default function HomeScreen() {
-  const [count, setCount] = useState(0);
+  const [counters, setCounters] = useState([]);
+  //   const [totalTimervalue, setTotalTimerValue] = useState(0);
+
   const handleAddCounterClick = () => {
-    setCount(count + 1);
+    const newCounter = {
+      id: counters.length,
+      timerValue: 0,
+    };
+    setCounters([...counters, newCounter]);
+  };
+  console.log("17", counters);
+
+  const handleTimerValueChange = (id, timerValue) => {
+    setCounters((prevCounters) =>
+      prevCounters.map((counter) =>
+        counter.id === id
+          ? { ...counter, timerValue: counter.timerValue + timerValue }
+          : counter
+      )
+    );
   };
 
   return (
@@ -18,10 +35,18 @@ export default function HomeScreen() {
         fontFamily: "sans-serif",
       }}
     >
-      <Addcounterbox onAddCounterClick={handleAddCounterClick} />
+      <Addcounterbox
+        onAddCounterClick={handleAddCounterClick}
+        counters={counters}
+      />
       <div className="counter-box">
-        {Array.from({ length: count }).map((ele, index) => (
-          <StartCounter key={index} />
+        {counters.map((counter) => (
+          <StartCounter
+            key={counter.id}
+            id={counter.id}
+            timerValue={counter.timerValue}
+            onTimerValueChange={handleTimerValueChange}
+          />
         ))}
       </div>
     </div>
