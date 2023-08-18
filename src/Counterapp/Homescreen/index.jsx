@@ -39,7 +39,7 @@ export default function HomeScreen() {
         onAddCounterClick={handleAddCounterClick}
         counters={counters}
       />
-      <div className="counter-box">
+      <div className="counter-box center">
         {counters.map((counter) => (
           <StartCounter
             key={counter.id}
